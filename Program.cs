@@ -1,9 +1,45 @@
-﻿namespace Module_10{
-    internal class Program{
+﻿using static Module_10.Program;
 
-        public interface IWriter { void Writer(); } // мое первое определение интерфейса в приложении
-        static void Main(string[] args) { 
+namespace Module_10
+{
+    internal class Program
+    {
 
+        public interface IManager //Задание 10.1.5
+        {
+            void Create();
+            void Read();
+            void Update();
+            void Delete();
+
+
+
+        }
+        static void Main(string[] args)
+        {
+
+        }
+        public class Manager : IManager
+        {
+            public void Create()
+            {
+
+            }
+
+            public void Read()
+            {
+
+            }
+
+            public void Update()
+            {
+
+            }
+
+            public void Delete()
+            {
+
+            }
         }
     }
 }
