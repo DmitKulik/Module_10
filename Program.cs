@@ -2,47 +2,43 @@
 
 namespace Module_10
 {
-    internal class Program   //Задание 10.3.2
+    internal class Program   //Задание 10.3.3
     {
-        public interface ICreatable
+        public interface IBook
         {
-            void Create();
+            void Read();
         }
 
-        public interface IDeletable
+        public interface IDevice
         {
-            void Delete();
-        }
-
-        public interface IUpdatable
-        {
-            void Update();
+            void TurnOn();
+            void TurnOff();
         }
 
         static void Main(string[] args)
         {
 
-            FileManager fileMeneger = new FileManager();
+            ElectronicBook fileMeneger = new ElectronicBook();
 
-            ((ICreatable)fileMeneger).Create();
-            ((IDeletable)fileMeneger).Delete();
-            ((IUpdatable)fileMeneger).Update();
+            ((IBook)fileMeneger).Read();
+            ((IDevice)fileMeneger).TurnOff();
+            ((IDevice)fileMeneger).TurnOn();
 
         }
     }
-    public class FileManager : ICreatable, IDeletable, IUpdatable
+    public class ElectronicBook : IBook, IDevice
     {
-        public void Create()
+        void IBook.Read()
         {
-            Console.WriteLine("Метод Write !write");
+            Console.WriteLine("BOOK");
         }
-        public void Delete()
+        void IDevice.TurnOn()
         {
-            Console.WriteLine("Метод Read IReader");
+            Console.WriteLine("TurnOn");
         }
-        public void Update()
+        void IDevice.TurnOff()
         {
-            Console.WriteLine("Метод SendEmail IMailer");
+            Console.WriteLine("TurnOff");
         }
     }
 }
