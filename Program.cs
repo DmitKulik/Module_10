@@ -5,41 +5,33 @@ namespace Module_10
     internal class Program
     {
 
-        public interface IManager //Задание 10.1.5
+        public interface IWathApp
         {
-            void Create();
-            void Read();
-            void Update();
-            void Delete();
-
-
-
+            public void SendMessage(string message);
+        }
+        public interface IViber
+        {
+            public void SendMessage(string message);
         }
         static void Main(string[] args)
         {
+            NewMessage newMessage = new NewMessage();
 
+            ((IWathApp)newMessage).SendMessage("Test1");
+            ((IViber)newMessage).SendMessage("Test2");
         }
-        public class Manager : IManager
+        
+    }
+    public class NewMessage : IWathApp, IViber
+    {
+        void IWathApp.SendMessage(string message)
         {
-            public void Create()
-            {
+            Console.WriteLine("{ 0 } : { 1 }", "WathApp", message);
+        }
 
-            }
-
-            public void Read()
-            {
-
-            }
-
-            public void Update()
-            {
-
-            }
-
-            public void Delete()
-            {
-
-            }
+        void IViber.SendMessage(string message)
+        {
+            Console.WriteLine("{ 0 } : { 1 }", "Viber", message);
         }
     }
 }
