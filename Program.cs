@@ -2,45 +2,47 @@
 
 namespace Module_10
 {
-    internal class Program
-    { 
-        // Определяется интерфейс IViber со методом SendMessage
-        public interface IViber
+    internal class Program   //Задание 10.3.1
+    {
+        public interface IWriter
         {
-            public void SendMessage(string message);
+            void Write();
         }
-        // Определяется интерфейс IWathApp со методом SendMessage
-        public interface IWathApp
+
+        public interface IReader
         {
-            public void SendMessage(string message);
+            void Read();
+        }
+
+        public interface IMailer
+        {
+            void SendEmail();
         }
 
         static void Main(string[] args)
         {
-            // Создается новый объект класса NewMessage
-            NewMessage newMessage = new NewMessage();
 
-            // Вызывается метод SendMessage из интерфейса IWathApp
-            ((IWathApp)newMessage).SendMessage("Test1");
+            FileManager fileMeneger = new FileManager();
 
-            // Вызывается метод SendMessage из интерфейса IViber
-            ((IViber)newMessage).SendMessage("Test2");
+            ((IWriter)fileMeneger).Write();
+            ((IReader)fileMeneger).Read();
+            ((IMailer)fileMeneger).SendEmail();
+
         }
     }
-
-    // Класс NewMessage реализует интерфейсы IWathApp и IViber
-    public class NewMessage : IWathApp, IViber
+    public class FileManager : IWriter, IReader, IMailer
     {
-        // ЯВНАЯ реализация метода SendMessage из интерфейса IWathApp
-        void IWathApp.SendMessage(string message)
+        void IWriter.Write()
         {
-            Console.WriteLine("{ 0 } : { 1 }", "WathApp", message);
+            Console.WriteLine("Метод Write !write");
         }
-
-        // НЕ ЯВНАЯ реализация метода SendMessage из интерфейса IViber
-        public void SendMessage(string message)
+        void IReader.Read()
         {
-            Console.WriteLine("{ 0 } : { 1 }", "Viber", message);
+            Console.WriteLine("Метод Read IReader");
+        }
+        void IMailer.SendEmail()
+        {
+            Console.WriteLine("Метод SendEmail IMailer");
         }
     }
 }
