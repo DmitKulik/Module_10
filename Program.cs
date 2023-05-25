@@ -2,21 +2,21 @@
 
 namespace Module_10
 {
-    internal class Program   //Задание 10.3.1
+    internal class Program   //Задание 10.3.2
     {
-        public interface IWriter
+        public interface ICreatable
         {
-            void Write();
+            void Create();
         }
 
-        public interface IReader
+        public interface IDeletable
         {
-            void Read();
+            void Delete();
         }
 
-        public interface IMailer
+        public interface IUpdatable
         {
-            void SendEmail();
+            void Update();
         }
 
         static void Main(string[] args)
@@ -24,23 +24,23 @@ namespace Module_10
 
             FileManager fileMeneger = new FileManager();
 
-            ((IWriter)fileMeneger).Write();
-            ((IReader)fileMeneger).Read();
-            ((IMailer)fileMeneger).SendEmail();
+            ((ICreatable)fileMeneger).Create();
+            ((IDeletable)fileMeneger).Delete();
+            ((IUpdatable)fileMeneger).Update();
 
         }
     }
-    public class FileManager : IWriter, IReader, IMailer
+    public class FileManager : ICreatable, IDeletable, IUpdatable
     {
-        void IWriter.Write()
+        public void Create()
         {
             Console.WriteLine("Метод Write !write");
         }
-        void IReader.Read()
+        public void Delete()
         {
             Console.WriteLine("Метод Read IReader");
         }
-        void IMailer.SendEmail()
+        public void Update()
         {
             Console.WriteLine("Метод SendEmail IMailer");
         }
