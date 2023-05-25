@@ -31,14 +31,14 @@ namespace Module_10
     // Класс NewMessage реализует интерфейсы IWathApp и IViber
     public class NewMessage : IWathApp, IViber
     {
-        // Реализация метода SendMessage из интерфейса IWathApp
+        // ЯВНАЯ реализация метода SendMessage из интерфейса IWathApp
         void IWathApp.SendMessage(string message)
         {
             Console.WriteLine("{ 0 } : { 1 }", "WathApp", message);
         }
 
-        // Реализация метода SendMessage из интерфейса IViber
-        void IViber.SendMessage(string message)
+        // НЕ ЯВНАЯ реализация метода SendMessage из интерфейса IViber
+        public void SendMessage(string message)
         {
             Console.WriteLine("{ 0 } : { 1 }", "Viber", message);
         }
