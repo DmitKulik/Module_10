@@ -1,44 +1,48 @@
-﻿using static Module_10.Program;
-
+﻿
 namespace Module_10
 {
-    internal class Program   //Задание 10.3.3
+   
+    class Program //Задание 10.4.4
     {
-        public interface IBook
+        
+        static void Main()
         {
-            void Read();
-        }
+            // Создание объектов классов User и Account 
 
-        public interface IDevice
-        {
-            void TurnOn();
-            void TurnOff();
-        }
+            var user = new User();
+            var account = new Account();
 
-        static void Main(string[] args)
-        {
+            // Создание объекта класса UserService с использованием интерфейса IUpdater<Account>
+            IUpdater<Account> updater = new UserService();
 
-            ElectronicBook fileMeneger = new ElectronicBook();
-
-            ((IBook)fileMeneger).Read();
-            ((IDevice)fileMeneger).TurnOff();
-            ((IDevice)fileMeneger).TurnOn();
-
+            // Создание объекта класса UserService и вызов его метода Update
+            var userService = new UserService();
+            userService.Update(user);
         }
     }
-    public class ElectronicBook : IBook, IDevice
+
+    // Определение интерфейса IUpdater, принимающего в качестве параметра тип T, с модификатором входного параметра in для контравариантности
+    public interface IUpdater<in T>
     {
-        void IBook.Read()
+        void Update(T entity);
+    }
+
+    // Определение класса UserService, реализующего интерфейс IUpdater для типа User
+    public class UserService : IUpdater<User>
+    {
+        public void Update(User entity)
         {
-            Console.WriteLine("BOOK");
+            throw new NotImplementedException();
         }
-        void IDevice.TurnOn()
-        {
-            Console.WriteLine("TurnOn");
-        }
-        void IDevice.TurnOff()
-        {
-            Console.WriteLine("TurnOff");
-        }
+    }
+
+    public class User
+    {
+
+    }
+
+    public class Account : User
+    {
+
     }
 }
